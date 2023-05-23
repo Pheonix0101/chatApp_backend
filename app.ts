@@ -13,20 +13,9 @@ interface Users {
 
 const users: Users = {};
 
-// io.use((socket:any,next)=>{
-//   // console.log(socket.handshake);
-//   // console.log(socket.handshake.headers);
-//   if (socket.handshake['my-custom-username'] === "purushottam" && socket.handshake['my-custom-password'] === "1234") {
-//     next();
-//   }else{
-//     // next(new Error())
-//     console.log();
-//   }
-// })
-
 io.on("connection", (socket: Socket) => {
   socket.on("new-user-joined", (name: string) => {
-    console.log("new user", name);
+    // console.log("new user", name);
     users[socket.id] = name;
     socket.broadcast.emit("userjoined", name);
   });
